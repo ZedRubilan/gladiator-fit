@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gladiator Fit — скачать для Android</title>
+<meta name="description" content="Приложение клуба Gladiator для Android: абонемент, посещения, питание, тренировки. Скачайте APK бесплатно.">
+<meta name="theme-color" content="#0b0b0c">
+<meta property="og:title" content="Gladiator Fit — скачать для Android">
+<meta property="og:description" content="Приложение клуба Gladiator: абонемент, посещения, питание, тренировки.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zedrubilan.github.io/gladiator-fit/assets/og.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root {
+    --bg:#0b0b0c; --card:#151517; --line:#26262a; --fg:#f4f1ec; --muted:#9a968f;
+    --accent:#ff9a2e; --accent2:#ff6a00; --ok:#5ad17a;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:var(--accent); }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+
+  header { display:flex; align-items:center; justify-content:space-between; padding:18px 0; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.02em; }
+  .brand img { width:32px; height:32px; border-radius:8px; }
+  .lang { display:flex; gap:4px; background:var(--card); border:1px solid var(--line); border-radius:999px; padding:3px; }
+  .lang button {
+    border:0; background:none; color:var(--muted); font:inherit; font-size:.85rem; font-weight:600;
+    padding:5px 12px; border-radius:999px; cursor:pointer;
+  }
+  .lang button[aria-pressed="true"] { background:var(--accent); color:#1a1000; }
+
+  .hero { position:relative; text-align:center; padding:40px 0 56px; }
+  .hero::before {
+    content:""; position:absolute; left:50%; top:-40px; width:720px; height:720px; max-width:140vw;
+    transform:translateX(-50%); pointer-events:none; z-index:-1;
+    background:radial-gradient(circle,rgba(255,138,0,.22) 0%,rgba(255,138,0,0) 62%);
+  }
+  .logo { width:168px; height:168px; border-radius:38px; box-shadow:0 0 0 1px rgba(255,154,46,.25),0 24px 70px rgba(255,106,0,.35); }
+  h1 { font-size:clamp(2.2rem,6vw,3.4rem); line-height:1.1; margin:28px 0 12px; letter-spacing:-.02em; }
+  h1 span { background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.12rem; max-width:540px; margin:0 auto 32px; }
+
+  .btn {
+    display:inline-flex; align-items:center; gap:12px; text-decoration:none;
+    background:linear-gradient(180deg,var(--accent),var(--accent2)); color:#1a0e00;
+    font-weight:800; font-size:1.15rem; padding:17px 34px; border-radius:16px;
+    box-shadow:0 10px 36px rgba(255,106,0,.35); transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 14px 44px rgba(255,106,0,.5); }
+  .btn:active { transform:none; }
+  .btn svg { width:22px; height:22px; flex:none; }
+  .btn { justify-content:center; text-align:center; }
+  .meta { margin-top:14px; color:var(--muted); font-size:.9rem; min-height:1.4em; }
+  .meta b { color:var(--fg); font-weight:600; }
+  .older { margin-top:6px; font-size:.88rem; }
+
+  .qr { display:none; margin:32px auto 0; align-items:center; gap:16px; text-align:left;
+        background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 18px 14px 14px; width:max-content; max-width:100%; }
+  .qr img { width:96px; height:96px; background:#fff; padding:6px; border-radius:10px; }
+  .qr p { margin:0; color:var(--muted); font-size:.92rem; max-width:200px; }
+  @media (hover:hover) and (pointer:fine) and (min-width:700px) { .qr { display:flex; } }
+
+  h2 { font-size:1.5rem; margin:0 0 20px; letter-spacing:-.01em; }
+  section { padding:28px 0; }
+
+  .steps { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); counter-reset:s; padding:0; margin:0; list-style:none; }
+  .steps li { counter-increment:s; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; }
+  .steps li::before {
+    content:counter(s); display:grid; place-items:center; width:32px; height:32px; margin-bottom:12px;
+    border-radius:50%; background:rgba(255,154,46,.14); color:var(--accent); font-weight:800;
+  }
+  .steps b { display:block; margin-bottom:4px; }
+  .steps span { color:var(--muted); font-size:.95rem; }
+
+  .features { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
+  .f { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; }
+  .f i { font-style:normal; font-size:1.6rem; display:block; margin-bottom:8px; }
+  .f b { display:block; }
+  .f span { color:var(--muted); font-size:.92rem; }
+
+  .note { background:rgba(255,154,46,.07); border:1px solid rgba(255,154,46,.28); border-radius:16px; padding:18px 20px; color:#d8d3ca; font-size:.95rem; }
+  .note b { color:var(--accent); }
+
+  footer { border-top:1px solid var(--line); margin-top:36px; padding:26px 0 48px; color:var(--muted); font-size:.88rem; text-align:center; }
+
+  html[lang="ru"] [data-l]:not([data-l="ru"]),
+  html[lang="uz"] [data-l]:not([data-l="uz"]),
+  html[lang="en"] [data-l]:not([data-l="en"]) { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="assets/logo.png" alt="" width="32" height="32"> Gladiator</div>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-set="ru" aria-pressed="true">RU</button>
+      <button data-set="uz" aria-pressed="false">UZ</button>
+      <button data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <img class="logo" src="assets/logo.png" alt="Gladiator Fit" width="168" height="168">
+      <h1>Gladiator <span>Fit</span></h1>
+      <p class="lead">
+        <span data-l="ru">Приложение клуба Gladiator: абонемент, посещения, питание и тренировки — всё в одном телефоне.</span>
+        <span data-l="uz">Gladiator klubi ilovasi: abonement, tashriflar, ovqatlanish va mashg‘ulotlar — hammasi bitta telefonda.</span>
+        <span data-l="en">The Gladiator gym app: your membership, visits, nutrition and workouts — all in one phone.</span>
+      </p>
+
+      <a id="dl" class="btn" href="https://github.com/ZedRubilan/gladiator-fit/releases/latest/download/gladiator-fit.apk" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
+        <span data-l="ru">Скачать для Android</span>
+        <span data-l="uz">Android’ga yuklab olish</span>
+        <span data-l="en">Download for Android</span>
+      </a>
+      <div class="meta" id="meta"></div>
+      <div class="older">
+        <a href="https://github.com/ZedRubilan/gladiator-fit/releases">
+          <span data-l="ru">Все версии</span><span data-l="uz">Barcha versiyalar</span><span data-l="en">All versions</span>
+        </a>
+      </div>
+
+      <div class="qr">
+        <img src="assets/qr.svg" alt="QR" width="96" height="96">
+        <p>
+          <span data-l="ru">На компьютере? Наведите камеру телефона, чтобы открыть эту страницу на телефоне.</span>
+          <span data-l="uz">Kompyuterdamisiz? Bu sahifani telefonda ochish uchun kamerani yo‘naltiring.</span>
+          <span data-l="en">On a computer? Point your phone camera here to open this page on your phone.</span>
+        </p>
+      </div>
+    </div>
+
+    <section>
+      <h2><span data-l="ru">Как установить</span><span data-l="uz">Qanday o‘rnatiladi</span><span data-l="en">How to install</span></h2>
+      <ol class="steps">
+        <li>
+          <b data-l="ru">Скачайте файл</b><b data-l="uz">Faylni yuklab oling</b><b data-l="en">Download the file</b>
+          <span data-l="ru">Нажмите кнопку выше. Если браузер предупредит о файле — выберите «Всё равно скачать».</span>
+          <span data-l="uz">Yuqoridagi tugmani bosing. Brauzer ogohlantirsa — «Baribir yuklab olish»ni tanlang.</span>
+          <span data-l="en">Tap the button above. If the browser warns about the file, choose “Download anyway”.</span>
+        </li>
+        <li>
+          <b data-l="ru">Разрешите установку</b><b data-l="uz">O‘rnatishga ruxsat bering</b><b data-l="en">Allow the install</b>
+          <span data-l="ru">Откройте файл. Телефон попросит разрешить установку из этого источника — включите «Разрешить» для браузера.</span>
+          <span data-l="uz">Faylni oching. Telefon shu manbadan o‘rnatishga ruxsat so‘raydi — brauzer uchun «Ruxsat berish»ni yoqing.</span>
+          <span data-l="en">Open the file. Your phone will ask to allow installs from this source — enable “Allow” for your browser.</span>
+        </li>
+        <li>
+          <b data-l="ru">Войдите по номеру</b><b data-l="uz">Raqam bilan kiring</b><b data-l="en">Sign in with your number</b>
+          <span data-l="ru">Запустите Gladiator Fit и введите номер телефона из вашего абонемента. Вход подтвердит администратор клуба.</span>
+          <span data-l="uz">Gladiator Fit’ni ishga tushiring va abonementingizdagi telefon raqamini kiriting. Kirishni klub administratori tasdiqlaydi.</span>
+          <span data-l="en">Launch Gladiator Fit and enter the phone number on your membership. The front desk confirms your sign-in.</span>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2><span data-l="ru">Что внутри</span><span data-l="uz">Ichida nima bor</span><span data-l="en">What’s inside</span></h2>
+      <div class="features">
+        <div class="f"><i>🎫</i>
+          <b data-l="ru">Абонемент</b><b data-l="uz">Abonement</b><b data-l="en">Membership</b>
+          <span data-l="ru">Срок, посещения, оплаты и заморозка.</span><span data-l="uz">Muddat, tashriflar, to‘lovlar va muzlatish.</span><span data-l="en">Plan, visits, payments and freezes.</span></div>
+        <div class="f"><i>🥗</i>
+          <b data-l="ru">Дневник питания</b><b data-l="uz">Ovqatlanish kundaligi</b><b data-l="en">Food diary</b>
+          <span data-l="ru">Калории, вода и ИИ-распознавание блюд по фото.</span><span data-l="uz">Kaloriya, suv va rasmdan AI orqali taom aniqlash.</span><span data-l="en">Calories, water and AI meal scan from a photo.</span></div>
+        <div class="f"><i>🏋️</i>
+          <b data-l="ru">Тренировки</b><b data-l="uz">Mashg‘ulotlar</b><b data-l="en">Workouts</b>
+          <span data-l="ru">Программы и запись к тренеру.</span><span data-l="uz">Dasturlar va trenerga yozilish.</span><span data-l="en">Programs and trainer bookings.</span></div>
+        <div class="f"><i>🪙</i>
+          <b data-l="ru">Монеты и бар</b><b data-l="uz">Tangalar va bar</b><b data-l="en">Coins &amp; bar</b>
+          <span data-l="ru">Бонусные монеты и ваши заказы в баре.</span><span data-l="uz">Bonus tangalar va bardagi buyurtmalaringiz.</span><span data-l="en">Bonus coins and your bar orders.</span></div>
+        <div class="f"><i>🎵</i>
+          <b data-l="ru">Музыка в зале</b><b data-l="uz">Zaldagi musiqa</b><b data-l="en">Gym music</b>
+          <span data-l="ru">Голосуйте за треки, которые играют в клубе.</span><span data-l="uz">Klubda chalinadigan treklarga ovoz bering.</span><span data-l="en">Vote for the tracks playing in the club.</span></div>
+        <div class="f"><i>👟</i>
+          <b data-l="ru">Шаги и сон</b><b data-l="uz">Qadamlar va uyqu</b><b data-l="en">Steps &amp; sleep</b>
+          <span data-l="ru">По желанию — из Health Connect.</span><span data-l="uz">Xohlasangiz — Health Connect’dan.</span><span data-l="en">Optional, from Health Connect.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="note">
+        <span data-l="ru"><b>Временная раздача.</b> Пока приложение не появилось в Google Play, его можно установить напрямую отсюда. Нужен Android 8.0 или новее. Когда приложение выйдет в Google Play, обновляйтесь оттуда — версию из Google Play придётся ставить заново, предварительно удалив эту.</span>
+        <span data-l="uz"><b>Vaqtinchalik tarqatish.</b> Ilova Google Play’da paydo bo‘lguncha uni shu yerdan o‘rnatish mumkin. Android 8.0 yoki yangiroq kerak. Ilova Google Play’ga chiqqach, yangilanishni o‘sha yerdan oling — Google Play versiyasini o‘rnatishdan oldin bu versiyani o‘chirib tashlash kerak bo‘ladi.</span>
+        <span data-l="en"><b>Temporary distribution.</b> Until the app is on Google Play, you can install it directly from here. Requires Android 8.0 or newer. Once it’s on Google Play, update from there — you’ll need to uninstall this version before installing the Google Play one.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-l="ru">Gladiator Fit · Разработчик: Archduke Mobile</span>
+    <span data-l="uz">Gladiator Fit · Ishlab chiquvchi: Archduke Mobile</span>
+    <span data-l="en">Gladiator Fit · Developed by Archduke Mobile</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var html = document.documentElement;
+  var buttons = document.querySelectorAll('.lang button');
+  var texts = {
+    ru: { title: 'Gladiator Fit — скачать для Android', version: 'Версия', released: 'от', size: 'МБ' },
+    uz: { title: 'Gladiator Fit — Android uchun yuklab olish', version: 'Versiya', released: '', size: 'MB' },
+    en: { title: 'Gladiator Fit — download for Android', version: 'Version', released: 'released', size: 'MB' }
+  };
+  var release = null;
+
+  function setLang(l, save) {
+    if (!texts[l]) l = 'ru';
+    html.lang = l;
+    document.title = texts[l].title;
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === l); });
+    if (save) { try { localStorage.setItem('lang', l); } catch (e) {} }
+    renderMeta();
+  }
+
+  function renderMeta() {
+    var el = document.getElementById('meta');
+    if (!release) { el.textContent = ''; return; }
+    var t = texts[html.lang];
+    var date = new Date(release.published_at).toLocaleDateString(
+      html.lang === 'uz' ? 'uz-UZ' : html.lang === 'en' ? 'en-GB' : 'ru-RU',
+      { day: 'numeric', month: 'long', year: 'numeric' });
+    var parts = [t.version + ' <b>' + release.version + '</b>'];
+    if (release.size) parts.push('<b>' + (release.size / 1048576).toFixed(0) + ' ' + t.size + '</b>');
+    parts.push((t.released ? t.released + ' ' : '') + date);
+    el.innerHTML = parts.join(' · ');
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var nav = (navigator.language || 'ru').slice(0, 2).toLowerCase();
+  setLang(saved || (texts[nav] ? nav : 'ru'), false);
+  buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.set, true); }); });
+
+  // Latest version, size and date straight from GitHub (the button itself works without this).
+  fetch('https://api.github.com/repos/ZedRubilan/gladiator-fit/releases/latest')
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (r) {
+      var apk = (r.assets || []).filter(function (a) { return /\.apk$/.test(a.name); })[0];
+      release = { version: (r.tag_name || '').replace(/^v(\d+\.\d+\.\d+)\.(\d+)$/, '$1 ($2)').replace(/^v/, ''), published_at: r.published_at, size: apk && apk.size };
+      renderMeta();
+    })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>
